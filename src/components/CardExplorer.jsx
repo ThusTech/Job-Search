@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function CardExplorer({bg='bg-gray-100',title, description, subDescription}){
@@ -9,9 +10,10 @@ export default function CardExplorer({bg='bg-gray-100',title, description, subDe
             <p className="mt-2 mb-4">
                 {description}
             </p>
-            <a className="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700" href="*">
+            <Link className="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700" 
+            to="*">
                 {subDescription}
-            </a>
+            </Link>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logo from '../assets/images/logo.png'
 
 
@@ -16,17 +17,20 @@ export default function NavBar(){
 
                         <div className='md:ml-auto'>
                             <div className='flex space-x-2'>
-                                <a className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' href="*">
+                                <Link className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' 
+                                to="/">
                                     Home
-                                </a>
+                                </Link>
 
-                                <a className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' href="*">
+                                <Link className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' 
+                                to="/jobs">
                                     Jobs
-                                </a>
+                                </Link>
 
-                                <a className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' href="*">
+                                <Link className='text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' 
+                                to="/add-jobs">
                                     Add Job
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
