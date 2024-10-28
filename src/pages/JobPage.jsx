@@ -1,4 +1,4 @@
-export default function JobPage(){
+export default function JobPage({id}){
     return (
         <section className="bg-gradient-to-br from-purple-600 to-blue-500 min-h-screen flex items-center justify-center"> 
             <div className="w-full max-w-lg bg-white rounded-3xl shadow-lg p-8">

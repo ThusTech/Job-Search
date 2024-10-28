@@ -1,9 +1,22 @@
 import {Link} from 'react-router-dom'
+import {useState} from 'react'
 
 
-export default function Job({ job, }){
+export default function Job({ job }){
 
-    console.log(job)
+    const [description, setDescription] = useState(job.description)
+    const [view, setView] = useState(false)
+
+    function handleClickEvent(){
+        setView(prev => !prev)
+
+        if(view){
+            setDescription(job.type)
+        }else{
+            setDescription(job.description)
+        }
+    }
+
     return (
         <div className="bg-white rounded-xl shadow-md relative">
             <div className="p-4">
@@ -13,10 +26,12 @@ export default function Job({ job, }){
                 </div>
 
                 <div className="mb-5">
-                    {job.description}
+                    {description}
                 </div>
 
-                <button className="text-indigo-500 mb-5 hover:text-indigo-600">
+                <button
+                onClick={handleClickEvent} 
+                className="text-indigo-500 mb-5 hover:text-indigo-600">
                     More
                 </button>
 

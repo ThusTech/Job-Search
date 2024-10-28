@@ -4,7 +4,7 @@ import logo from '../assets/images/logo.png'
 
 export default function NavBar(){
     return (
-        <nav className='bg-indigo-700 border-b border-indigo-500'>
+        <nav className='bg-gradient-to-br from-purple-600 to-blue-500 border-b border-indigo-500 rounded-xl'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='flex h-20 items-center justify-between'>
                     <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
