@@ -4,17 +4,16 @@ import {useState} from 'react'
 
 export default function Job({ job }){
 
-    const [description, setDescription] = useState(job.description)
+    const [description, setDescription] = useState(`${job.description.substring(0,90)} ...`)
     const [view, setView] = useState(false)
 
     function handleClickEvent(){
-        setView(prev => !prev)
-
-        if(view){
-            setDescription(job.type)
-        }else{
+        if(!view){
             setDescription(job.description)
+        }else{
+            setDescription(`${job.description.substring(0,90)} ...`)
         }
+        setView(prev => !prev)
     }
 
     return (

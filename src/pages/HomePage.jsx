@@ -8,7 +8,10 @@ export default function HomePage(){
         <>
             <Header/>
             <Explorer/>
-            <Jobs/>
+            <Jobs 
+            bg="bg-indigo-100" 
+            textColor="text-black"
+            />
             <ViewAllJobs/>
         </>
     )
