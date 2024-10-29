@@ -2,10 +2,10 @@
 
 export default function Footer(){
     return (
-        <footer className="bg-gray-100">
-            <div className="flex">
-                <div className="">
-                    <h3>About Us</h3>
+        <footer className="bg-gray-100 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+                <div className="px-20">
+                    <h3 className="font-bold">About Us</h3>
                     <small>
                         At Job-Search, we are redefining how people find jobs and companiews find talent. No more endless
                         scrolling or irrelevant listings - just <bold>Smart matches</bold> that connects you to the right
@@ -23,10 +23,10 @@ export default function Footer(){
                     </small>
                 </div>
 
-                <div className="">
-                    <h3>Follow Us</h3>
+                <div className="px-20">
+                    <h3 className="font-bold">Follow Us</h3>
                 </div>
             </div>
         </footer>
-    )
+    ) 
 }
