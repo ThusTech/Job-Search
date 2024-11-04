@@ -14,25 +14,25 @@ export default function Jobs({
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
     useEffect(
         () => {
             setLoading(true)
             try{
-                axios.get('https://job-search-hhfc.onrender.com/jobs').then(
+                axios.get(`${API_URL}/jobs`).then(
                     (response) => {
                         setJobs(response.data)
                     }
                 )
             }catch (err){
-                // setError()
+                setError(err)
             }finally{
                 setLoading(false)
             }
             
         }, []
     )
-
-    
 
     const jobElements = jobs.map((job) => {
         return <Job key={job.id} job={job}/>
