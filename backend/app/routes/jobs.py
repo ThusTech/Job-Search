@@ -1,12 +1,13 @@
 from fastapi import APIRouter, HTTPException
 from ..database import Database
 from ..models import Job
+from bson import ObjectId
 
 
 router = APIRouter()
 
 @router.get("/jobs")
-async def getJobs(response_model = Job):
+async def get_jobs():
     db = await Database.database("JobListing")
     jobs_cursor = db["Jobs"].find()
 
@@ -16,3 +17,16 @@ async def getJobs(response_model = Job):
         raise HTTPException(status_code = 404, detail = "No jobs found")
     
     return jobs_list
+
+
+@router.get("/jobs/{job_id}")
+async def get_job(job_id:str):
+    db = await Database.database("JobListing")
+    job = await db["Jobs"].find_one({"_id": job_id})
+
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    return job
+
+    
