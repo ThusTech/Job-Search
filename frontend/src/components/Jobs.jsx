@@ -14,24 +14,24 @@ export default function Jobs({
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
+    // Use the VITE_API_URL environment variable
+    const API_URL = import.meta.env.VITE_API_URL;
 
     useEffect(
         () => {
-            setLoading(true)
-            try{
-                axios.get(`${API_URL}/jobs`).then(
-                    (response) => {
-                        setJobs(response.data)
-                    }
-                )
-            }catch (err){
-                setError(err)
-            }finally{
-                setLoading(false)
-            }
-            
-        }, []
+            const fetchData = async () => {
+                setLoading(true)
+                try{
+                    const response = await axios.get(`${API_URL}/jobs`);
+                    setJobs(response.data);
+                }catch (err){
+                    setError(err)
+                }finally{
+                    setLoading(false)
+                }
+            };
+            fetchData();
+        }, [API_URL]
     )
 
     const jobElements = jobs.map((job) => {
