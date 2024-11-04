@@ -1,7 +1,7 @@
 import Job from './Job'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import RingLoader from 'react-spinners/RingLoader'
+import {RingLoader, ClimbingBoxLoader} from 'react-spinners'
 import Loader from './Loader'
 
 
@@ -18,7 +18,7 @@ export default function Jobs({
         () => {
             setLoading(true)
             try{
-                axios.get('http://127.0.0.1:8080/jobs').then(
+                axios.get('https://job-search-hhfc.onrender.com/jobs').then(
                     (response) => {
                         setJobs(response.data)
                     }
