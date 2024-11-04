@@ -7,9 +7,9 @@ export default function HomePage(){
     return (
         <>
             <Header/>
-            <Explorer/>
+            {/* <Explorer/> */}
             <Jobs 
-            bg="bg-indigo-100" 
+            bg="bg-white-50" 
             textColor="text-black"
             />
             <ViewAllJobs/>

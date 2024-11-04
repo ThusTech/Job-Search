@@ -17,7 +17,7 @@ export default function Job({ job }){
     }
 
     return (
-        <div className="bg-white rounded-xl shadow-md relative">
+        <div className="bg-white rounded-xl border-2 border-grey-500 relative">
             <div className="p-4">
                 <div className="mb-6">
                     <div className="text-gray-600 my-2">{job.type}</div>
@@ -45,7 +45,7 @@ export default function Job({ job }){
                     </div>
 
                     <Link className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm" 
-                    to={`/jobs/:${job.id}`}>
+                    to={`/jobs/:${job._id}`}>
                         Read More
                     </Link>
 
