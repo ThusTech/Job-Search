@@ -26,15 +26,23 @@ export default function NavBar(){
 
                         <div className='md:ml-auto'>
                             <div className='flex space-x-2'>
-                                <Link className='hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' 
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-3 py-2' 
                                 to="/">
                                     Home
                                 </Link>
 
-                                <Link className='hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' 
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-3 py-2' 
                                 to="/jobs">
                                     Jobs
                                 </Link>
+
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-5 py-2'>
+                                    Sign in
+                                </Link>
+
+                                <div className=''>
+                                    <img className='h-10 w-auto hidden md:block' src={logo} alt='profileImage'/>
+                                </div>
                             </div>
                         </div>
                     </div>
