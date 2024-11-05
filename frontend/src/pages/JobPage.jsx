@@ -5,7 +5,7 @@ import Loader from '../components/Loader'
 
 export default function JobPage(){
 
-    const {id} = useParams()
+    const { jobId } = useParams()
     const [job, setJob] = useState()
     const [loading, setLoading] = useState(true)
 
@@ -17,7 +17,7 @@ export default function JobPage(){
                 setLoading(true)
 
                 try{
-                    const response = await axios.get(`${API_URL}/jobs/${id}`)
+                    const response = await axios.get(`${API_URL}/jobs/${jobId}`)
                     setJob(await response.data)
                 }catch (err){
 
