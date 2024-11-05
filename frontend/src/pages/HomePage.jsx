@@ -1,15 +1,13 @@
-import Header from '../components/Header'
-import Explorer from '../components/Explorer'
+import Hero from '../components/Hero'
 import Jobs from '../components/Jobs'
 import ViewAllJobs from '../components/ViewAllJobs'
+
 
 export default function HomePage(){
     return (
         <>
-            <Header/>
-            {/* <Explorer/> */}
+            <Hero />
             <Jobs 
-            bg="bg-white-50" 
             textColor="text-black"
             />
             <ViewAllJobs/>

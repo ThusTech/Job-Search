@@ -11,6 +11,14 @@ module.exports = {
       },
       gridTemplateColumns:{
         '70/30' : '70% 28%'
+      },
+      backgroundImage: {
+        'custom-image': "url('./src/assets/images/logo-color.png')"
+      },
+      backgroundSize:{
+        '75': '75%',
+        '50': '50%',
+        '25': '25%',
       }
     },
   },

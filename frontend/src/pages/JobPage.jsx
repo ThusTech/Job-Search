@@ -1,7 +1,15 @@
-export default function JobPage({id}){
+import {useParams} from 'react-router-dom'
+import image from '../assets/images/logo-no-background.png'
+
+export default function JobPage(){
+
+
+
+
     return (
-        <section className="bg-white min-h-screen flex items-center justify-center py-20"> 
-            <div className="w-full max-w-lg bg-white rounded-3xl shadow-lg p-8 border-2 border-gray">
+        <section className="bg-white min-h-screen flex items-center justify-center py-20">
+
+            <div className="w-3/4 bg-white rounded-3xl shadow-lg p-8 border-2 border-gray">
                 <div className="text-center mb-8">
                     <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

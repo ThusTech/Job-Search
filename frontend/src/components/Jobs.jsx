@@ -6,8 +6,7 @@ import Loader from './Loader'
 
 
 
-export default function Jobs({ 
-    bg = "bg-white-50",
+export default function Jobs({
     textColor = "text-white"}){
 
     const [jobs, setJobs] = useState([])
@@ -39,8 +38,8 @@ export default function Jobs({
     })
 
     return (
-        <section className= {`${bg} px-4 py-10` }>
-                { loading ? <Loader/> : 
+        <section className= {`px-4 py-10` }>
+                { loading ? <Loader loading={loading}/> : 
                     <div className='container-xl lg:container m-auto'>
                         <h2 className={`text-2xl ${textColor} mb-6 text-center font-bold font-sans`}>
                             Jobs for you

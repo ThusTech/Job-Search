@@ -5,10 +5,10 @@ import Footer from '../components/Footer'
 
 export default function MainLayout(){
     return (
-        <>
+        <div className='min-h-screen'>
             <NavBar/>
-            <Outlet/>
+            <Outlet />
             <Footer/>
-        </>
+        </div>
     )
 }
