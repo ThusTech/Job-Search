@@ -1,7 +1,6 @@
 import Job from './Job'
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import {RingLoader, ClimbingBoxLoader} from 'react-spinners'
 import Loader from './Loader'
 
 
