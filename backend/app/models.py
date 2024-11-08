@@ -11,6 +11,10 @@ class Job(BaseModel):
     salary: Union[str, float, int]
     company: object
 
+class Auth(BaseModel):
+    email: str
+    password: str
+
 
 class Company(BaseModel):
     name: str

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes import jobs
+from .routes import auth
 from .database import Database
 from contextlib import asynccontextmanager
 
@@ -24,6 +25,7 @@ app.add_middleware(
 )   
 
 app.include_router(jobs.router)
+app.include_router(auth.router)
 
 
 
