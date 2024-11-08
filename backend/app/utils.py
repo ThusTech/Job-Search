@@ -1,12 +1,12 @@
 import bcrypt
 import base64
+import json
+import hashlib
+import hmac
 
 
 
 class Utils:
-    def __init__():
-        pass
-
     @classmethod
     def hash_password(cls,password:str) -> str:
         bytes = password.encode('utf-8')
@@ -37,15 +37,3 @@ class Utils:
         if not cls.verify_password(password=password, hash=hashed): return False
 
         return True
-    
-    @classmethod
-    def _json_header(cls):
-        pass
-
-    @classmethod
-    def _json_payload(cls):
-        pass
-
-    @classmethod
-    def _json_signature(cls):
-        pass
