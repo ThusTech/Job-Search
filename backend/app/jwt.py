@@ -7,10 +7,10 @@ import datetime
 
 class JWT:
     @classmethod
-    def access_token(cls,email="Demo@gmail.com"):
+    def create_token(cls,minutes = 45 ,email="Demo@gmail.com"):
         header = cls._header(alg="HS256",typ="JWT")
 
-        exp = int((datetime.datetime.now() + datetime.timedelta(minutes=45)).timestamp())
+        exp = int((datetime.datetime.now() + datetime.timedelta(minutes)).timestamp())
 
         payload = cls._payload(email=email, exp=exp)
         signature = cls._signature(header=header, payload=payload)
