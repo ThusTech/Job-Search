@@ -10,18 +10,15 @@ class JWT:
     def access_token(cls,email="Demo@gmail.com"):
         header = cls._header(alg="HS256",typ="JWT")
 
-        exp = (datetime.datetime.now() + datetime.timedelta(minutes = 45)).ctime()
+        exp = int((datetime.datetime.now() + datetime.timedelta(minutes=45)).timestamp())
 
-        payload = cls._payload(exp=exp)
+        payload = cls._payload(email=email, exp=exp)
+        signature = cls._signature(header=header, payload=payload)
 
-        token = cls._signature(header=header, payload=payload)
-
-        return token
-
-
+        return b'.'.join([header, payload, signature])
 
     @classmethod
-    def _header(cls, **kwargs):
+    def _header(cls, **kwargs) -> bytes:
         """
         The header typically consists of two parts: the type of token (JWT) and the signing algorithm being used,
         such as HMAC SHA256 or RSA. For example:
@@ -35,7 +32,7 @@ class JWT:
         return base64.urlsafe_b64encode(json_header).rstrip(b'=')
 
     @classmethod
-    def _payload(cls, **kwargs):
+    def _payload(cls, **kwargs) -> bytes:
         """
         The payload contains the claims, which are statements about an entity (typically,
         the user) and additional data. Claims are encoded as a JSON object and can include
@@ -53,7 +50,7 @@ class JWT:
         return base64.urlsafe_b64encode(json_payload).rstrip(b'=')
 
     @classmethod
-    def _signature(cls, **kwargs):
+    def _signature(cls, **kwargs) -> bytes:
         """
         The signature is used to verify the authenticity of the token.
         It is created by taking the encoded header and payload,
@@ -68,11 +65,16 @@ class JWT:
         try:
             signing_input = kwargs['header'] + b'.' + kwargs['payload']
             signature = hmac.new(settings.SECRET.encode('utf-8'), signing_input, hashlib.sha256).digest()
-        except Exception as err:
-            pass
 
-        return base64.urlsafe_b64encode(signature).rstrip(b'=')
+            return base64.urlsafe_b64encode(signature).rstrip(b'=')
+        except Exception as err:
+            raise Exception(f"Signature generation failed: {str(err)}")
+
+        
     
     @classmethod
     def verify_token(cls):
         pass
+
+
+
