@@ -5,5 +5,6 @@ load_dotenv()
 
 class Settings:
     MONGO_URI = os.getenv("MONGO_URI")
+    SECRET = os.getenv("SECRET")
 
 settings = Settings()

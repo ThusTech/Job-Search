@@ -10,7 +10,6 @@ class Database():
 
     @classmethod
     async def ping_server(cls):
-        # uri = "mongodb+srv://tmalaza429:Ymp7MoRUlEUGNfL4@thustech.au0bq.mongodb.net/?retryWrites=true&w=majority&appName=ThusTech"
         cls._client = AsyncIOMotorClient(cls.uri)
 
         try:
