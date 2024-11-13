@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 from ..database import Database
 from ..models import Auth
 from ..utils import Utils
@@ -8,7 +9,7 @@ from ..jwt import JWT
 router = APIRouter()
 
 
-@router.post('/api/auth/signin')
+@router.post('/api/auth/login')
 async def sign_in(auth: Auth):
     db = await Database.database("users")
 
@@ -16,13 +17,19 @@ async def sign_in(auth: Auth):
 
     if not Utils.validate_user(user=user, password=auth.password):
         raise HTTPException(status_code = 404, detail = "Authentication failed")
+
+    access_token = JWT.create_token(minutes=30, email = auth.email)
+    refresh_token = JWT.create_token(minutes=150, email = auth.email)
+
+    response = JSONResponse(content={"message":"Login successful"})
+    response.set_cookie(key="access_token", value=access_token, httponly=True)
     
-    access_token = JWT.create_token(minutes=30)
-    refresh_token = JWT.create_token(minutes=150)
-    
-    return {"access_token": access_token,
-            "refresh_token": refresh_token}
+    return response
 
 @router.post('/api/auth/signup')
 async def sign_up():
+    pass
+
+@router.get("/protected-route")
+async def protected_route():
     pass
