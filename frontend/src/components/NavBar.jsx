@@ -6,12 +6,12 @@ import logo from '../assets/images/logo-color.png'
 export default function NavBar(){
 
     return (
-        <nav className=' border-b border-indigo-500'>
+        <nav className='bg-gray-600 border-b border-indigo-500'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='flex h-20 items-center justify-between'>
                     <div className='flex flex-1 items-center justify-center md:items-stretch md:justify-start'>
                         <a className='flex flex-shrink-0 items-center mr-4'>
-                            <img className='h-10 w-auto hidden md:block mx-8' src={logo} alt='Jobs'/>
+                            <img className='h-10 rounded-full w-auto hidden md:block mx-8' src={logo} alt='Jobs'/>
                             <div className='relative text-white w-100'>
                                 <input
                                     type="text"
@@ -26,23 +26,22 @@ export default function NavBar(){
 
                         <div className='md:ml-auto'>
                             <div className='flex space-x-2'>
-                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-3 py-2' 
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md text-white px-3 py-2' 
                                 to="/">
                                     Home
                                 </Link>
 
-                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-3 py-2' 
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md text-white px-3 py-2' 
                                 to="/jobs">
                                     Jobs
                                 </Link>
 
-                                <Link className='hover:bg-blue-900 hover:text-white rounded-md px-5 py-2'>
-                                    Sign in
+                                <Link className='hover:bg-blue-900 hover:text-white rounded-md text-white px-5 py-2'
+                                to='/login'>
+                                    Login
                                 </Link>
 
-                                <div className=''>
-                                    <img className='h-10 w-auto hidden md:block' src={logo} alt='profileImage'/>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

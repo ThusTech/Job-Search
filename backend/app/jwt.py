@@ -1,3 +1,5 @@
+from fastapi import HTTPException, Request, status, Depends
+from typing import Optional
 import base64
 import hashlib
 import json
@@ -7,7 +9,7 @@ import datetime
 
 class JWT:
     @classmethod
-    def create_token(cls,minutes = 45 ,email="Demo@gmail.com"):
+    def create_token(cls,minutes = 45 ,email="Demo@gmail.com") -> bytes:
         header = cls._header(alg="HS256",typ="JWT")
 
         exp = int((datetime.datetime.now() + datetime.timedelta(minutes)).timestamp())
@@ -71,10 +73,33 @@ class JWT:
             raise Exception(f"Signature generation failed: {str(err)}")
 
         
-    
     @classmethod
-    def verify_token(cls):
-        pass
+    def get_jwt_from_cookie(request: Request) -> Optional[str]:
+        token = request.cookies.get("access_token")
+
+        if not token:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Access token missing in cookies"
+            )
+        return token
+
+
+    @classmethod
+    def verify_jwt_token(cls, token: str = Depends(get_jwt_from_cookie)) -> bool:
+
+        try:
+            _token = base64.urlsafe_b64decode(token + "==")
+            _header,_payload,_signature = _token.split(".")
+        except Exception as err:
+            raise HTTPException(status_code=404, detail="Invalid token")
+        
+        # header = base64.urlsafe_b64decode(_header + "==")
+        # payload = base64.urlsafe_b64decode(_payload + "==")
+        # signature = base64.urlsafe_b64decode(_signature + "==")
+
+
+        return True
 
 
 
