@@ -9,7 +9,7 @@ import datetime
 
 class JWT:
     @classmethod
-    def create_token(cls,minutes = 45 ,email="Demo@gmail.com") -> bytes:
+    def create_token(cls,minutes = 45 , email="Demo@gmail.com") -> bytes:
         header = cls._header(alg="HS256",typ="JWT")
 
         exp = int((datetime.datetime.now() + datetime.timedelta(minutes)).timestamp())
