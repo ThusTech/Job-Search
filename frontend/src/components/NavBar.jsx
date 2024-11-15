@@ -56,32 +56,34 @@ export default function NavBar(){
 
                                 <DropdownMenu>
                                     <DropdownMenuTrigger>
-                                        <MenuIcon/>
+                                        <MenuIcon className='text-white'/>
                                     </DropdownMenuTrigger>
                                     
-                                    <DropdownMenuContent className='w-56 rounded border border-indigo-500'>
+                                    <DropdownMenuContent className='bg-gray-600 w-56 rounded border border-indigo-500'>
                                         <DropdownMenuGroup className='px-5 py-2'>
-                                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                            <DropdownMenuLabel>
+                                                <span className='text-white'>My Account</span>
+                                            </DropdownMenuLabel>
                                             <DropdownMenuSeparator className='py-1 border-b'/>
                                             
                                             <DropdownMenuItem className='pt-4 flex'>
-                                                <LogIn/>
-                                                <Link className='hover:text-indigo-500 text-black mx-4'
+                                                <LogIn className='text-white'/>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
                                                 to='/login'>
                                                     Login
                                                 </Link>
                                             </DropdownMenuItem>
                                             <DropdownMenuItem className='pt-2 flex'>
-                                                <User />
-                                                <span className='mx-4'>Profile</span>
+                                                <User className='text-white'/>
+                                                <span className='mx-4 text-white'>Profile</span>
                                             </DropdownMenuItem>
                                             <DropdownMenuItem className='pt-2 flex'>
-                                                <Settings />
-                                                <span className='mx-4'>Settings</span>
+                                                <Settings className='text-white'/>
+                                                <span className='mx-4 text-white'>Settings</span>
                                             </DropdownMenuItem>
                                             <DropdownMenuItem className='pt-2 flex'>
-                                                <LogOut />
-                                                <span className='mx-4'>Log out</span>
+                                                <LogOut className='text-white'/>
+                                                <span className='mx-4 text-white'>Log out</span>
                                             </DropdownMenuItem>
                                         </DropdownMenuGroup>
                                     </DropdownMenuContent>
