@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes import jobs
 from .routes import auth
-from .database import Database
+from .database.database import Database
 from contextlib import asynccontextmanager
 
 
