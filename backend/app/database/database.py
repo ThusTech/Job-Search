@@ -1,6 +1,6 @@
 import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
-from .config import settings
+from ..utils.config import settings
 
 
 

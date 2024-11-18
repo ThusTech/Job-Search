@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from ..database import Database
+from ..database.database import Database
 from ..models import Auth
 from ..utils import Utils
-from ..jwt import JWT
+from ..utils.jwt import JWT
 
 
 router = APIRouter()

@@ -15,13 +15,15 @@ import {LogOut,
     User,
     Settings,
     LogIn,
-    MenuIcon
+    MenuIcon,
+    HomeIcon,
+    PenIcon
 } from 'lucide-react'
 
 
 export default function NavBar(){
 
-    // const [search, setSearch] = useState('')
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <nav className='bg-gray-600 border-b border-indigo-500'>
@@ -29,17 +31,16 @@ export default function NavBar(){
                 <div className='flex h-20 items-center justify-between'>
                     <div className='flex flex-1 items-center justify-center md:items-start justify-start'>
                         <a className='flex flex-shrink-0 items-center mr-4'>
-                            <img className='h-10 rounded-full w-auto hidden md:block mx-8' src={logo} alt='Jobs'/>
-                            <div className='relative text-white w-200'>
+                            <h2 className='mx-auto pr-2 text-indigo-500 text-2xl font-bold md:pr-5 md:text-4xl md:font-extrabold'>StudentHub</h2>
+                            
                                 <input
                                     type="text"
-                                    className="w-full border-2 rounded text-gray-800 pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"
+                                    className="block border-2 rounded text-gray-800 pl-10 pr-4 py-2"
                                     placeholder="Search..."
                                     // value={search}
                                     // onChange={(e) => setSearch(e.target.value)}
                                     />
-                                    <FiSearch className="absolute left-3 top-2.5 text-gray-400" />
-                            </div>
+                            
                         </a>
 
                         <div className='md:ml-auto'>
@@ -55,36 +56,60 @@ export default function NavBar(){
                                 </Link>
 
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger>
-                                        <MenuIcon/>
+                                    <DropdownMenuTrigger onMouseEnter={()=> setIsOpen(true)}>
+                                        <MenuIcon className='text-white'/>
                                     </DropdownMenuTrigger>
-                                    
-                                    <DropdownMenuContent className='w-56 rounded border border-indigo-500'>
+
+                                    { isOpen && (
+                                        <DropdownMenuContent 
+                                        className='bg-gray-600 w-56 rounded border border-indigo-500'
+                                        onMouseLeave = {() => setIsOpen(false)}
+                                        >
                                         <DropdownMenuGroup className='px-5 py-2'>
-                                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                            <DropdownMenuLabel>
+                                                <span className='text-white'>My Account</span>
+                                            </DropdownMenuLabel>
                                             <DropdownMenuSeparator className='py-1 border-b'/>
-                                            
-                                            <DropdownMenuItem className='pt-4 flex'>
-                                                <LogIn/>
-                                                <Link className='hover:text-indigo-500 text-black mx-4'
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <HomeIcon className='text-white'/>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/'>
+                                                    Home
+                                                </Link>
+                                            </DropdownMenuItem>
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <LogIn className='text-white'/>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
                                                 to='/login'>
                                                     Login
                                                 </Link>
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem className='pt-2 flex'>
-                                                <User />
-                                                <span className='mx-4'>Profile</span>
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <User className='text-white'/>
+                                                <span className='mx-4 text-white'>Profile</span>
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem className='pt-2 flex'>
-                                                <Settings />
-                                                <span className='mx-4'>Settings</span>
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <Settings className='text-white'/>
+                                                <span className='mx-4 text-white'>Settings</span>
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem className='pt-2 flex'>
-                                                <LogOut />
-                                                <span className='mx-4'>Log out</span>
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <PenIcon className='text-white'/>
+                                                <span className='mx-4 text-white'>Services</span>
+                                            </DropdownMenuItem>
+
+                                            <DropdownMenuItem className='py-1 flex'>
+                                                <LogOut className='text-white'/>
+                                                <span className='mx-4 text-white'>Log out</span>
                                             </DropdownMenuItem>
                                         </DropdownMenuGroup>
                                     </DropdownMenuContent>
+                                    )}
+                                    
                                 </DropdownMenu>
                                 
                             </div>
