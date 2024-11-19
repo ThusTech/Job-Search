@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from ..database.database import Database
-from ..models import Job
+from ..models.job_models import Job
 from bson import ObjectId
 
 

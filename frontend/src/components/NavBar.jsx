@@ -24,24 +24,25 @@ import {LogOut,
 export default function NavBar(){
 
     const [isOpen, setIsOpen] = useState(false)
+    const [search, setSearch] = useState('')
 
     return (
         <nav className='bg-gray-600 border-b border-indigo-500'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='flex h-20 items-center justify-between'>
                     <div className='flex flex-1 items-center justify-center md:items-start justify-start'>
-                        <a className='flex flex-shrink-0 items-center mr-4'>
-                            <h2 className='mx-auto pr-2 text-indigo-500 text-2xl font-bold md:pr-5 md:text-4xl md:font-extrabold'>StudentHub</h2>
+                        <div className='flex w-full max-w'>
+                            <h2 className='mx-auto pr-2 text-indigo-500 text-2xl font-bold md:pr-5 md:text-4xl md:font-extrabold hidden md:block'>StudentHub</h2>
                             
                                 <input
                                     type="text"
-                                    className="block border-2 rounded text-gray-800 pl-10 pr-4 py-2"
+                                    className="w-full mr-5 block border-2 rounded text-gray-800 pl-10 pr-4 py-2"
                                     placeholder="Search..."
-                                    // value={search}
-                                    // onChange={(e) => setSearch(e.target.value)}
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
                                     />
                             
-                        </a>
+                        </div>
 
                         <div className='md:ml-auto'>
                             <div className='flex space-x-2'>
