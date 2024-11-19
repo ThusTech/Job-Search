@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from ..database.database import Database
-from ..models import Auth
+from ..models.auth_models import Signup, Auth
 from ..utils.utils import Utils
 from ..utils.jwt import JWT
 

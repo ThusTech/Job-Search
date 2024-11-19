@@ -3,13 +3,7 @@ from fastapi import APIRouter, HTTPException, status
 
 router = APIRouter()
 
-
-@router.post("/api/users/register")
-async def get_user():
-    pass
-
-
-@router.get("")
+@router.get("/api/users/{userId}")
 async def get_users():
     pass
 

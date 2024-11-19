@@ -1,4 +1,3 @@
-import asyncio
 from motor.motor_asyncio import AsyncIOMotorClient
 from ..utils.config import settings
 
