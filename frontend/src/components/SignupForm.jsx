@@ -7,8 +7,12 @@ export default function SignupForm(){
                 <h2 className="text-2xl font-bold text-center text-gray-800">Signup</h2>
                 <form className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">First Name</label>
-                        <input type="text"
+                        <label 
+                        for='firstName'
+                        className="block text-sm font-medium text-gray-700">First Name</label>
+                        <input 
+                        id = 'firstName'
+                        type="text"
                         placeholder="Jane"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
                         />
