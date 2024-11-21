@@ -12,7 +12,6 @@ from pydantic import GetCoreSchemaHandler
 from pydantic.json_schema import JsonSchemaValue
 
 class PyObjectId(ObjectId):
-
     @classmethod
     def validate(cls, value:str):
         if not ObjectId.is_valid(value):

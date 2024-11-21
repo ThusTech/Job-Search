@@ -4,25 +4,40 @@ from ..database.database import Database
 from ..models.auth_models import Signup, Auth, Signin
 from ..models.user_models import User, Profile
 from ..utils.utils import Utils
-from ..core.jwt import JWT
-from ..core.core import PyObjectId
+# from ..core.jwt import JWT
+from ..core.core import PyObjectId, JWT
 from bson import ObjectId
 
 
 router = APIRouter()
 
 
-@router.post('/api/auth/login')
-async def sign_in(auth: Signin):
+@router.post('/api/auth/signin')
+async def sign_in(signin: Signin):
     db = await Database.database("users")
 
-    user =  await db['auth'].find_one({"email": auth.email})
+    auth_collection = db['auth']
 
-    if not Utils.validate_user(user=user, password=auth.password):
+    email = signin.email
+
+    auth =  await auth_collection.find_one({"email": email})
+
+    if not Utils.validate_user(auth=auth, password=signin.password):
         raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = "Authentication failed")
+    
+    # TODO
+    """ 
+        I need to check that the header has an access_token
+        if the cookie head has the access_token 
+        validate token a check if it has expired
+        if expired 
+    """
 
-    access_token = JWT.create_token(minutes=15, email = auth.email)
-    refresh_token = JWT.create_token(minutes=60, email = auth.email)
+
+    access_token = JWT.create_token(minutes=15, email = signin.email)
+    refresh_token = JWT.create_token(minutes=60, email = signin.email)
+
+    # result = await auth_collection.update_one()
 
     response = JSONResponse(content={"message":"Login successful"})
     response.set_cookie(key="access_token", value=access_token, httponly=True)
@@ -34,12 +49,15 @@ async def sign_up(signup: Signup):
     email = signup.email
 
     db = await Database.database("users")
-    user = await db['users'].find_one({"email": email})
+
+    users_collection = db['users']
+
+    user = await users_collection.find_one({"email": email})
 
     if user:
         return HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = "user email exists")
     
-    users_collection = db['users']
+
     profile_collection = db['profiles']
     auth_collection = db['auth']
     

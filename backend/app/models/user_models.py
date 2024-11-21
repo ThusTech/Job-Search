@@ -15,7 +15,7 @@ class User(BaseModel):
     role: str = Field(default= None)
 
     class Config:
-        json_encoders = {ObjectId: str}
+        json_encoders = { ObjectId: str }
         arbitrary_types_allowed = True
         allow_population_by_field_name = True
 
