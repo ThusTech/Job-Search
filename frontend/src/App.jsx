@@ -3,6 +3,7 @@ import JobsPage from './pages/JobsPage'
 import JobPage from './pages/JobPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
+// import ProfilePage from './pages/ProfilePage'
 import NotFoundPage from './pages/NotFoundPage'
 import MainLayout from './layouts/MainLayout'
 

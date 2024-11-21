@@ -90,7 +90,10 @@ export default function NavBar(){
 
                                             <DropdownMenuItem className='py-1 flex'>
                                                 <User className='text-white'/>
-                                                <span className='mx-4 text-white'>Profile</span>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/profile'>
+                                                    profile
+                                                </Link>
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem className='py-1 flex'>
