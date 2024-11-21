@@ -1,6 +1,6 @@
 from bson import ObjectId
 from fastapi import HTTPException, Request, status, Depends
-from typing import Optional
+from typing import Optional, Any
 import base64
 import hashlib
 import json
@@ -8,6 +8,8 @@ import hmac
 from .config import settings
 import datetime
 from pydantic_core import core_schema
+from pydantic import GetCoreSchemaHandler
+from pydantic.json_schema import JsonSchemaValue
 
 class PyObjectId(ObjectId):
 
@@ -19,8 +21,13 @@ class PyObjectId(ObjectId):
         return ObjectId(value)
     
     @classmethod
-    def __get_pydantic_core_schema__(cls, source, handler):
-        return core_schema.str_schema()
+    def __get_pydantic_core_schema__(cls, source: Any, handler: GetCoreSchemaHandler) -> Any:
+        return core_schema.no_info_after_validator_function(cls.validate, core_schema.str_schema())
+    
+    @classmethod
+    def __get_pydantic_json_schema__(cls, schema: JsonSchemaValue, handler: Any) -> JsonSchemaValue:
+        schema.update(type="string")
+        return schema
 
 
 class JWT:

@@ -6,9 +6,6 @@ from bson import ObjectId
 
 
 class User(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
-
     email: str
     phone: str = Field(default=None)
     username: str
@@ -17,17 +14,24 @@ class User(BaseModel):
     isActive: bool  = Field(default=None)
     role: str = Field(default= None)
 
-class Profile(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    
+    class Config:
+        json_encoders = {ObjectId: str}
+        arbitrary_types_allowed = True
+        allow_population_by_field_name = True
 
-    userId: PyObjectId
+class Profile(BaseModel):
+    userId: Optional[PyObjectId]
     firstname: str = Field(default= None)
     lastname: str = Field(default= None)
     dateOfBirth: date = Field(default= None)
     bio: str = Field(default= None)
     avatarUrl: str = Field(default= None)
     idnumber: str = Field(default= None)
+
+    class Config:
+        json_encoders = {ObjectId: str}
+        arbitrary_types_allowed = True
+        allow_population_by_field_name = True
 
 
 class Adress(BaseModel):
