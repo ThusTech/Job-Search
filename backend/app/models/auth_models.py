@@ -3,11 +3,17 @@ from typing import Optional, Union
 
 
 class Signup(BaseModel):
-    firstName: str
-    lastName: str
+    firstname: str
+    lastname: str
+    email: str
+    password: str
+
+class Signin(BaseModel):
     email: str
     password: str
 
 class Auth(BaseModel):
     email: str
-    password: str
+    hashedPassword: str
+    accessToken: str = Field(default=None)
+    refreshToken: str = Field(default=None)
