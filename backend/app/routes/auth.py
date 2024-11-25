@@ -64,10 +64,10 @@ async def sign_up(signup: Signup):
 
     result = await users_collection.insert_one(
         User(
-            email=email,
-            role="user",
-            isActive=True,
-            username="demo086"
+            email = email,
+            role = "user",
+            isActive = True,
+            username= email.split("@")[0]
             ).model_dump(by_alias=True))
     
     id = str(result.inserted_id)
@@ -84,11 +84,12 @@ async def sign_up(signup: Signup):
         Auth(
             email = email,
             hashedPassword = Utils.hash_password(signup.password)
-        ).model_dump()
+        ).model_dump(by_alias=True)
     )
     
     return JSONResponse(content={"message": "registered successfully"})
 
-@router.get("/protected-route")
-async def protected_route():
+
+@router.delete('/api/auth/logout')
+async def logout():
     pass

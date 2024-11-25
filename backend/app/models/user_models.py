@@ -9,20 +9,20 @@ class User(BaseModel):
     email: str
     phone: str = Field(default=None)
     username: str
-    createdAt: Optional[datetime] = Field(default=None)
-    updatedAt: Optional[datetime] = Field(default=None)
+    createdAt: Optional[datetime] = Field(default_factory = lambda: datetime.now())
+    updatedAt: Optional[datetime] = Field(default_factory = lambda: datetime.now())
     isActive: bool  = Field(default=None)
     role: str = Field(default= None)
 
     class Config:
         json_encoders = { ObjectId: str }
         arbitrary_types_allowed = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 class Profile(BaseModel):
     userId: Optional[PyObjectId]
-    firstname: str = Field(default= None)
-    lastname: str = Field(default= None)
+    firstname: str
+    lastname: str
     dateOfBirth: date = Field(default= None)
     bio: str = Field(default= None)
     avatarUrl: str = Field(default= None)
@@ -31,7 +31,7 @@ class Profile(BaseModel):
     class Config:
         json_encoders = {ObjectId: str}
         arbitrary_types_allowed = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
 
 class Adress(BaseModel):

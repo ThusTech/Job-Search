@@ -14,13 +14,13 @@ class Signin(BaseModel):
     password: str
 
 class Auth(BaseModel):
-    id: Optional[PyObjectId]
+    id: Optional[PyObjectId] = Field(default_factory = PyObjectId, alias="_id")
     email: str
     hashedPassword: str
     accessToken: bytes = Field(default=None)
     refreshToken: bytes = Field(default=None)
 
     class Config:
-        allow_population_by_field = True
+        populate_by_name = True
         json_encoders = { ObjectId: str }
         arbitrary_types_allowed = True
