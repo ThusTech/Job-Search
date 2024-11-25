@@ -37,7 +37,9 @@ async def sign_in(signin: Signin):
     access_token = JWT.create_token(minutes=15, email = signin.email)
     refresh_token = JWT.create_token(minutes=60, email = signin.email)
 
-    # result = await auth_collection.update_one()
+
+    result = await auth_collection.update_one({"_id": auth["_id"]},
+                                              { "$set":{"refreshToken":refresh_token}})
 
     response = JSONResponse(content={"message":"Login successful"})
     response.set_cookie(key="access_token", value=access_token, httponly=True)
