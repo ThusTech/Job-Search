@@ -1,12 +1,13 @@
-from pydantic import BaseModel, Field, ConfigDict
-from typing import Optional, Union
+from pydantic import BaseModel, Field, EmailStr
+from typing import Optional
+from typing_extensions import Annotated
 from ..core.core import PyObjectId
 from datetime import datetime, date
 from bson import ObjectId
 
 
 class User(BaseModel):
-    email: str
+    email: EmailStr
     phone: str = Field(default=None)
     username: str
     createdAt: Optional[datetime] = Field(default_factory = lambda: datetime.now())

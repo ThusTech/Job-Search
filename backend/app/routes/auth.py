@@ -7,6 +7,7 @@ from ..utils.utils import Utils
 # from ..core.jwt import JWT
 from ..core.core import PyObjectId, JWT
 from bson import ObjectId
+import html
 
 
 router = APIRouter()
@@ -19,27 +20,20 @@ async def sign_in(signin: Signin):
     auth_collection = db['auth']
 
     email = signin.email
-
     auth =  await auth_collection.find_one({"email": email})
 
     if not Utils.validate_user(auth=auth, password=signin.password):
         raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = "Authentication failed")
-    
-    # TODO
-    """ 
-        I need to check that the header has an access_token
-        if the cookie head has the access_token 
-        validate token a check if it has expired
-        if expired 
-    """
 
 
     access_token = JWT.create_token(minutes=15, email = signin.email)
     refresh_token = JWT.create_token(minutes=60, email = signin.email)
 
 
-    result = await auth_collection.update_one({"_id": auth["_id"]},
-                                              { "$set":{"refreshToken":refresh_token}})
+    result = await auth_collection.update_one(
+        {"_id": auth["_id"]},
+        { "$set":{"refreshToken":refresh_token}}
+    )
 
     response = JSONResponse(content={"message":"Login successful"})
     response.set_cookie(key="access_token", value=access_token, httponly=True)
@@ -70,7 +64,8 @@ async def sign_up(signup: Signup):
             role = "user",
             isActive = True,
             username= email.split("@")[0]
-            ).model_dump(by_alias=True))
+            ).model_dump(by_alias=True)
+    )
     
     id = str(result.inserted_id)
 
