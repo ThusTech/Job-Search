@@ -17,7 +17,8 @@ import {LogOut,
     LogIn,
     MenuIcon,
     HomeIcon,
-    PenIcon
+    PenIcon,
+    Joystick,
 } from 'lucide-react'
 
 
@@ -27,7 +28,7 @@ export default function NavBar(){
     const [search, setSearch] = useState('')
 
     return (
-        <nav className='bg-gray-600 border-b border-indigo-500'>
+        <nav className='border-b border-indigo-500'>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
                 <div className='flex h-20 items-center justify-between'>
                     <div className='flex flex-1 items-center justify-center md:items-start justify-start'>
@@ -36,7 +37,7 @@ export default function NavBar(){
                             
                                 <input
                                     type="text"
-                                    className="w-full mr-5 block border-2 rounded text-gray-800 pl-10 pr-4 py-2"
+                                    className="w-full mr-5 block border-2 rounded-lg text-gray-800 pl-10 pr-4 py-2"
                                     placeholder="Search..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
@@ -46,19 +47,10 @@ export default function NavBar(){
 
                         <div className='md:ml-auto'>
                             <div className='flex space-x-2'>
-                                <Link className='hover:bg-blue-900 hover:text-white rounded-md text-white px-3 py-2 hidden md:block' 
-                                to="/">
-                                    Home
-                                </Link>
-
-                                <Link className='hover:bg-blue-900 hover:text-white rounded-md text-white px-3 py-2 hidden md:block' 
-                                to="/jobs">
-                                    Jobs
-                                </Link>
 
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger onMouseEnter={()=> setIsOpen(true)}>
-                                        <MenuIcon className='text-white'/>
+                                    <DropdownMenuTrigger className='bg-indigo-100 w-10 px-2 py-2 rounded-lg border' onMouseEnter={()=> setIsOpen(true)}>
+                                        <MenuIcon className=''/>
                                     </DropdownMenuTrigger>
 
                                     { isOpen && (
@@ -81,6 +73,14 @@ export default function NavBar(){
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem className='py-1 flex'>
+                                                <Joystick className='text-white'/>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/jobs'>
+                                                    Jobs
+                                                </Link>
+                                            </DropdownMenuItem>
+
+                                            <DropdownMenuItem className='py-1 flex'>
                                                 <LogIn className='text-white'/>
                                                 <Link className='hover:text-indigo-500 text-white mx-4'
                                                 to='/login'>
@@ -92,23 +92,32 @@ export default function NavBar(){
                                                 <User className='text-white'/>
                                                 <Link className='hover:text-indigo-500 text-white mx-4'
                                                 to='/profile'>
-                                                    profile
+                                                    Profile
                                                 </Link>
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem className='py-1 flex'>
                                                 <Settings className='text-white'/>
-                                                <span className='mx-4 text-white'>Settings</span>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/settings'>
+                                                    Settings
+                                                </Link>
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem className='py-1 flex'>
                                                 <PenIcon className='text-white'/>
-                                                <span className='mx-4 text-white'>Services</span>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/tools'>
+                                                    Tools
+                                                </Link>
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem className='py-1 flex'>
                                                 <LogOut className='text-white'/>
-                                                <span className='mx-4 text-white'>Log out</span>
+                                                <Link className='hover:text-indigo-500 text-white mx-4'
+                                                to='/logout'>
+                                                    Logout
+                                                </Link>
                                             </DropdownMenuItem>
                                         </DropdownMenuGroup>
                                     </DropdownMenuContent>
