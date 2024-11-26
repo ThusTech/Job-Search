@@ -4,7 +4,7 @@ import base64
 import hashlib
 import json
 import hmac
-from ..utils.config import settings
+from .config import settings
 import datetime
 
 class JWT:

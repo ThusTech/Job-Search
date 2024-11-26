@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import jobs
-from .routes import auth
+from .routes import jobs, auth, user
 from .database.database import Database
 from contextlib import asynccontextmanager
 

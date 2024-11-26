@@ -1,12 +1,14 @@
 import bcrypt
+from bson import ObjectId
 import base64
 import json
 import hashlib
 import hmac
 
 
-
 class Utils:
+
+
     @classmethod
     def hash_password(cls,password:str) -> str:
         bytes = password.encode('utf-8')
@@ -29,10 +31,10 @@ class Utils:
         return result
 
     @classmethod
-    def validate_user(cls, user, password) -> bool:
-        if not user : return False
+    def validate_user(cls, auth, password) -> bool:
+        if not auth : return False
 
-        hashed = user["hashedPassword"]
+        hashed = auth["hashedPassword"]
 
         if not cls.verify_password(password=password, hash=hashed): return False
 
