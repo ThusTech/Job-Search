@@ -10,6 +10,38 @@ import datetime
 from pydantic_core import core_schema
 from pydantic import GetCoreSchemaHandler
 from pydantic.json_schema import JsonSchemaValue
+import time
+from redis import Redis
+
+
+class ApiThrottling:
+    @classmethod
+    def check_sliding_window_throttling(cls, user_key:str, redis_client: Redis,throttle_limit = 5, throttle_window = 60):
+        """
+            check if the user has exceeded the throttling limit
+            using the sliding window algorithm
+        """
+
+        now = time.time()
+
+        # create a Redis key for the user
+        redis_key = f"throttle: {user_key}"
+        # fetch the timestamps of previous requests
+        pipeline = redis_client.pipeline()
+        # remove expired entries
+        pipeline.zremrangebyscore(redis_key,0,now - throttle_window)
+        # count remaining entries
+        pipeline.zcard(redis_key)
+        # add the current timestamp
+        pipeline.zadd(redis_key, {now : now})
+        # set TTL for the key
+        pipeline.expire(redis_key, throttle_window)
+
+        _, request_count, _, _ = pipeline.execute()
+
+        if request_count > throttle_limit:
+            raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+                detail= f"Too many requests. Please wait a moment before trying again.")
 
 class PyObjectId(ObjectId):
     @classmethod

@@ -46,85 +46,85 @@ export default function NavBar(){
                         </div>
 
                         <div className='md:ml-auto'>
-                            <div className='flex space-x-2'>
+                            <div className='relative'>
+                                <div className='absolute z-1'>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger className='bg-indigo-100 w-10 px-2 py-2 rounded-lg border' onMouseEnter={()=> setIsOpen(true)}>
+                                            <MenuIcon className=''/>
+                                        </DropdownMenuTrigger>
 
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger className='bg-indigo-100 w-10 px-2 py-2 rounded-lg border' onMouseEnter={()=> setIsOpen(true)}>
-                                        <MenuIcon className=''/>
-                                    </DropdownMenuTrigger>
+                                        { isOpen && (
+                                            <DropdownMenuContent 
+                                            className='bg-gray-600 w-56 rounded border border-indigo-500'
+                                            onMouseLeave = {() => setIsOpen(false)}
+                                            >
+                                            <DropdownMenuGroup className='px-5 py-2'>
+                                                <DropdownMenuLabel>
+                                                    <span className='text-white'>My Account</span>
+                                                </DropdownMenuLabel>
+                                                <DropdownMenuSeparator className='py-1 border-b'/>
 
-                                    { isOpen && (
-                                        <DropdownMenuContent 
-                                        className='bg-gray-600 w-56 rounded border border-indigo-500'
-                                        onMouseLeave = {() => setIsOpen(false)}
-                                        >
-                                        <DropdownMenuGroup className='px-5 py-2'>
-                                            <DropdownMenuLabel>
-                                                <span className='text-white'>My Account</span>
-                                            </DropdownMenuLabel>
-                                            <DropdownMenuSeparator className='py-1 border-b'/>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <HomeIcon className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/'>
+                                                        Home
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <HomeIcon className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/'>
-                                                    Home
-                                                </Link>
-                                            </DropdownMenuItem>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <Joystick className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/jobs'>
+                                                        Jobs
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <Joystick className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/jobs'>
-                                                    Jobs
-                                                </Link>
-                                            </DropdownMenuItem>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <LogIn className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/login'>
+                                                        Login
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <LogIn className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/login'>
-                                                    Login
-                                                </Link>
-                                            </DropdownMenuItem>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <User className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/profile'>
+                                                        Profile
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <User className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/profile'>
-                                                    Profile
-                                                </Link>
-                                            </DropdownMenuItem>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <Settings className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/settings'>
+                                                        Settings
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <Settings className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/settings'>
-                                                    Settings
-                                                </Link>
-                                            </DropdownMenuItem>
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <PenIcon className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/tools'>
+                                                        Tools
+                                                    </Link>
+                                                </DropdownMenuItem>
 
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <PenIcon className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/tools'>
-                                                    Tools
-                                                </Link>
-                                            </DropdownMenuItem>
-
-                                            <DropdownMenuItem className='py-1 flex'>
-                                                <LogOut className='text-white'/>
-                                                <Link className='hover:text-indigo-500 text-white mx-4'
-                                                to='/logout'>
-                                                    Logout
-                                                </Link>
-                                            </DropdownMenuItem>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                    )}
-                                    
-                                </DropdownMenu>
-                                
+                                                <DropdownMenuItem className='py-1 flex'>
+                                                    <LogOut className='text-white'/>
+                                                    <Link className='hover:text-indigo-500 text-white mx-4'
+                                                    to='/logout'>
+                                                        Logout
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                            </DropdownMenuGroup>
+                                        </DropdownMenuContent>
+                                        )}
+                                        
+                                    </DropdownMenu>
+                                </div>
                             </div>
                         </div>
                     </div>

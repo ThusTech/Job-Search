@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 fastapi-env
 .env
+*.env
 *.env.local
 dist
 dist-ssr

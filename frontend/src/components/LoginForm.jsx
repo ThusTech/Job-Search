@@ -7,13 +7,13 @@ export default function LoginForm(){
     const [password, setPassword] = useState('');
 
     const handleSubmit = async(event) =>{
-        event.preventDefault();
+        event.preventDefault(); // Prevent page reload
 
         try{
             await loginService(email, password);
             alert('login successful');
         }catch (err){
-            alert('login failed')
+            alert(`login failed: ${err.message}`)
         }
     }
 
