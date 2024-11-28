@@ -8,13 +8,15 @@ export default function SignupForm(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleSubmit = async () => {
-        await SignupService(
-            firstName=firstName,
-            lastName=lastName,
-            email=email,
-            password=password
-        )
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try{
+            await SignupService(firstName,lastName,email,password)
+            alert("Register Succefully!")
+        } catch (err){
+            alert(`Registration failed: ${err.message}`)
+        }
     }
 
 
@@ -32,6 +34,7 @@ export default function SignupForm(){
                         <input 
                         type="text"
                         placeholder="Jane"
+                        required
                         value = {firstName}
                         onChange={(event)=> setFirstName(event.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
@@ -43,6 +46,7 @@ export default function SignupForm(){
 
                         <input type="text"
                         placeholder="Doe"
+                        required
                         value={lastName}
                         onChange={(event) => setLastName(event.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
@@ -54,6 +58,7 @@ export default function SignupForm(){
 
                         <input type="email"
                         placeholder="janeDoe@gmail.com"
+                        required
                         value={email}
                         onChange={(event)=> setEmail(event.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"
@@ -65,6 +70,7 @@ export default function SignupForm(){
 
                         <input type="text"
                         placeholder="0973233233"
+                        required
                         value={password}
                         onChange={(event)=> setPassword(event.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-500 focus:border-blue-500"

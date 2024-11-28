@@ -4,10 +4,7 @@ from ..database.database import Database
 from ..models.auth_models import Signup, Auth, Signin
 from ..models.user_models import User, Profile
 from ..utils.utils import Utils
-# from ..core.jwt import JWT
 from ..core.core import PyObjectId, JWT
-from bson import ObjectId
-import html
 
 
 router = APIRouter()
@@ -23,7 +20,7 @@ async def sign_in(signin: Signin):
     auth =  await auth_collection.find_one({"email": email})
 
     if not Utils.validate_user(auth=auth, password=signin.password):
-        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = "Authentication failed")
+        raise HTTPException(status_code = status.HTTP_401_UNAUTHORIZED, detail = "Authentication failed")
 
 
     access_token = JWT.create_token(minutes=15, email = signin.email)
